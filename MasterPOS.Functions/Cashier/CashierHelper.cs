@@ -59,6 +59,12 @@ namespace MasterPOS.Functions.Cashier
                 throw new CashierException("Input cash is empty");
             }
 
+            foreach (var item in inputCash.Cash) {
+                if (!_currencies.Contains(item.Key)) {
+                    throw new CashierException("Invalid item in cash list");
+                }
+            }
+
             if (amount <= 0) {
                 throw new CashierException("Amount is not valid");
             }
